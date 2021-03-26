@@ -16,15 +16,13 @@ def parseargs():
     args = parser.parse_args()
     return vars(args)
 
-def spleeter_separate(inpath, outpath, prefix=None, posfix=None):
+def spleeter_separate(inpath, outpath, prefix=None):
     args = {
         '-o': outpath
     }
     cmdargs = ['spleeter', 'separate']
     if prefix != None:
         cmdargs = [prefix] + cmdargs
-    if posfix != None:
-        cmdargs = cmdargs + [posfix]
     cmdargs = cmdargs + [inpath]
     for key, value in args.items():
         cmdargs.append(key)
