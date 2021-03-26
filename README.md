@@ -11,7 +11,7 @@ Integrantes:
 2. Install [aeneas](https://github.com/readbeyond/aeneas/blob/master/wiki/INSTALL.md#all-in-one-installer-1)
 
 # Checkpoints
-[X] Sentences alignment
-[ ] Words alignment
-[ ] Syllable alignment
+- [x] Sentences alignment
+- [ ] Words alignment
+- [ ] Syllable alignment
 
