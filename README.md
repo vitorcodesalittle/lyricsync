@@ -1,6 +1,7 @@
 # Projeto de Computação Musical (IF???) 2020.1
 
 Integrantes:
+- Gabriel Pessoa
 - Luan
 - Pedro
 - Penélope
