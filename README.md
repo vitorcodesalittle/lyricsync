@@ -8,8 +8,8 @@ Integrantes:
 - Vitor
 
 # Setup
-1. Install [spleeter](https://github.com/deezer/spleeter)
-2. Install [aeneas](https://github.com/readbeyond/aeneas/blob/master/wiki/INSTALL.md#all-in-one-installer-1)
+1. Install [aeneas](https://github.com/readbeyond/aeneas/blob/master/wiki/INSTALL.md#all-in-one-installer-1)
+2. Install [spleeter](https://github.com/deezer/spleeter)
 
 # Checkpoints
 - [x] Sentences alignment
