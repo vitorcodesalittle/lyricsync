@@ -13,17 +13,20 @@ def parseargs():
     parser.add_argument('audiopath', metavar='audiopath', type=str, help="path to the music file in .wav")
     parser.add_argument('lyricspath', metavar='lyricspath', type=str, help="path to the music file in .wav")
     parser.add_argument('--cmdprefix', metavar='cmdprefix', type=str, help="Whateve prefix you need to add to \"spleeter separete ...\" to run spleeter and aeneas")
+    parser.add_argument('--cmdposfix', metavar='cmdposfix', type=str, help="Whateve you need to add after the  \"spleeter separate\" to run separate")
     args = parser.parse_args()
     return vars(args)
 
-def spleeter_separate(inpath, outpath, prefix=None):
+def spleeter_separate(inpath, outpath, prefix=None, posfix=None):
     args = {
-        '-i': inpath,
         '-o': outpath
     }
     cmdargs = ['spleeter', 'separate']
     if prefix != None:
         cmdargs = [prefix] + cmdargs
+    if posfix != None:
+        cmdargs = cmdargs + [posfix]
+    cmdargs = cmdargs + [inpath]
     for key, value in args.items():
         cmdargs.append(key)
         cmdargs.append(value)
@@ -43,11 +46,12 @@ args = parseargs()
 audiopath = args['audiopath']
 lyricspath = args['lyricspath']
 cmdprefix = args['cmdprefix']
+cmdposfix = args['cmdposfix']
 spleeteroutpath = './out/'
 
 _, audio_filename = os.path.split(audiopath)
 splits_dir = audio_filename.split('.')[0] # spleeter outputs vocals.wav into <outpath arg>/<audio name>
-spleeter_separate(inpath=audiopath, outpath=spleeteroutpath, prefix=cmdprefix )
+spleeter_separate(inpath=audiopath, outpath=spleeteroutpath, prefix=cmdprefix, posfix=cmdposfix)
 aeneas_align(audio_inputpath=os.path.join(spleeteroutpath, splits_dir, 'vocals.wav'), lyrics_inputpath=lyricspath, outpath="map.json")
 
 
