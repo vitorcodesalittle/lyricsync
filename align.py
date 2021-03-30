@@ -13,6 +13,8 @@ def parseargs():
     parser.add_argument('audiopath', metavar='audiopath', type=str, help="path to the music file in .wav")
     parser.add_argument('lyricspath', metavar='lyricspath', type=str, help="path to the music file in .wav")
     parser.add_argument('--cmdprefix', metavar='cmdprefix', type=str, help="Whateve prefix you need to add to \"spleeter separete ...\" to run spleeter and aeneas")
+    parser.add_argument('--lang', metavar='lang', default="eng", type=str, help="The language of your song (portuguese is \"por\") default is \"eng\"")
+    parser.add_argument('--outformat', metavar='lang', default="json", type=str, help="The format of your output, default is \"json\"")
     args = parser.parse_args()
     return vars(args)
 
@@ -32,7 +34,8 @@ def spleeter_separate(inpath, outpath, prefix=None):
         output = proc.stdout.read()
         print(output)
 
-def aeneas_align(audio_inputpath, lyrics_inputpath, outpath, optionsstring="task_language=eng|os_task_file_format=json|is_text_type=plain"):
+def aeneas_align(audio_inputpath, lyrics_inputpath, outpath, language, format):
+    optionsstring="task_language=" + language + "|os_task_file_format=" + format +  "|is_text_type=plain"
     cmdargs = ['python', '-m', 'aeneas.tools.execute_task', audio_inputpath, lyrics_inputpath, '"' + optionsstring + '"', outpath, '--skip-validator']
     print(">>", " ".join(cmdargs))
     with Popen(cmdargs, stdout=PIPE, shell=True) as proc:
@@ -43,11 +46,13 @@ args = parseargs()
 audiopath = args['audiopath']
 lyricspath = args['lyricspath']
 cmdprefix = args['cmdprefix']
+language = args['lang']
+outformat = args['outformat']
 spleeteroutpath = './out/'
 
 _, audio_filename = os.path.split(audiopath)
 splits_dir = audio_filename.split('.')[0] # spleeter outputs vocals.wav into <outpath arg>/<audio name>
 spleeter_separate(inpath=audiopath, outpath=spleeteroutpath, prefix=cmdprefix)
-aeneas_align(audio_inputpath=os.path.join(spleeteroutpath, splits_dir, 'vocals.wav'), lyrics_inputpath=lyricspath, outpath="map.json")
+aeneas_align(audio_inputpath=os.path.join(spleeteroutpath, splits_dir, 'vocals.wav'), lyrics_inputpath=lyricspath, outpath="map." + outformat, language=language, format=outformat)
 
 
