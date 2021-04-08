@@ -1,5 +1,6 @@
 import json
 from pydub import AudioSegment
+from pydub.playback import play
 
 f = open('results/map.json')
 sync_result = json.load(f)
@@ -15,4 +16,8 @@ for fragment in sync_result["fragments"]:
     'chunk': chunk,
     'lines': fragment["lines"]
   })
+  print(fragment["lines"])
+  play(chunk)
+
+
 
