@@ -10,7 +10,7 @@ chunks = []
 for fragment in sync_result["fragments"]:
   print(fragment)
   chunk = AudioSegment.empty()
-  chunk = song[ fragment["begin"] * secs: fragment["end"] * secs]
+  chunk = song[ float(fragment["begin"]) * secs: float(fragment["end"]) * secs]
   chunks.append({
     'chunk': chunk,
     'lines': fragment["lines"]
