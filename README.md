@@ -16,6 +16,8 @@ Integrantes:
 # Checkpoints
 
 - [x] Sentences alignment
+- [ ] Evaluation script
+- [ ] Plotting script
 - [ ] Words alignment
 - [ ] Syllable alignment
 
