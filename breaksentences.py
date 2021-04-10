@@ -1,3 +1,7 @@
+"""
+This script takes a lyrics file (with sentences splitted in lines)
+and outputs a file with words splitted in lines.
+"""
 inpath = '.\\data\\avercage_embers.txt'
 outpath = '.\\data\\avercage_embers.words.txt'
 
