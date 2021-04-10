@@ -1,12 +1,9 @@
 """
 This script is a shortcut for using spleeter and aeneas on some .wav and .txt
 """
-import sys
 import os
 from subprocess import Popen, PIPE
-import shlex
 import argparse
-from pathlib import Path
 
 def parseargs():
     parser = argparse.ArgumentParser(description='Sync lyrics with music')
