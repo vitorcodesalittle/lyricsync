@@ -49,10 +49,17 @@ cmdprefix = args['cmdprefix']
 language = args['lang']
 outformat = args['outformat']
 spleeteroutpath = './out/'
-
+aeneasoutpath = './results'
 _, audio_filename = os.path.split(audiopath)
+audioname, audiotype = audio_filename.split('.')
 splits_dir = audio_filename.split('.')[0] # spleeter outputs vocals.wav into <outpath arg>/<audio name>
+
 spleeter_separate(inpath=audiopath, outpath=spleeteroutpath, prefix=cmdprefix)
-aeneas_align(audio_inputpath=os.path.join(spleeteroutpath, splits_dir, 'vocals.wav'), lyrics_inputpath=lyricspath, outpath="map." + outformat, language=language, format=outformat)
 
-
+aeneas_align(
+    audio_inputpath=os.path.join(spleeteroutpath, splits_dir, 'vocals.wav'),
+    lyrics_inputpath=lyricspath,
+    outpath=os.path.join( aeneasoutpath, "{0:}_align.{1:}".format(audioname, outformat)),
+    language=language,
+    format=outformat
+)
