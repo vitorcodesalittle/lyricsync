@@ -20,9 +20,22 @@ Integrantes:
 - [ ] Evaluation script
 - [ ] Plotting script
 - [ ] Words alignment
-- [ ] Syllable alignment
+- [ ] ~~Syllable alignment~~
+
+# Utility
+
+- Convert .mp3 to .wav: `python conversion.py <path-to-song>`
+- Break a file into words: `python -m text.breaksentences <path-to-lyrics>`
+- Test word breaking: `python ./text/test_breaksentences.py`
+- Play segments of the audion:
+  - 1. Change `# CHANGE HERE` lines with file paths
+  - 2. Run `python player.py`
+- \[WIP\] Run Evaluation:
+  - 1. `cd packages && python eval.py`
 
 # Metrics and Plotting
+
 We run the scripts `Plot.py` and `Evaluate.py` taken from [this repo](https://github.com/f90/jamendolyrics)
+
 - [How to evaluate our alignment](https://github.com/f90/jamendolyrics#evaluating-your-own-models)
 - [Plotting our own predictions](https://github.com/f90/jamendolyrics#visualising-model-predictions)
