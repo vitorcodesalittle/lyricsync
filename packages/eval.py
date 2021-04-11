@@ -144,15 +144,9 @@ def compute_metrics(config):
     return results
 
 def main():
-    print("EVALUATING on Jamendo dataset, evaluate model from Stoller et al...")
-    config = ConfigParser(inline_comment_prefixes=["#"])
-    config.read("conf/stoller.cfg")
-    results = compute_metrics(config)
-    print_results(results)
-
     print("EVALUATING on Jamendo dataset, evaluate model from Stoller at al, source separated version...")
     config = ConfigParser(inline_comment_prefixes=["#"])
-    config.read("conf/stoller_source_sep.cfg")
+    config.read("./main.cfg")
     results = compute_metrics(config)
     print_results(results)
 
