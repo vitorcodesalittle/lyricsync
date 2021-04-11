@@ -2,3 +2,4 @@
 pretrained_models
 out/*
 map.*
+__pycache__
