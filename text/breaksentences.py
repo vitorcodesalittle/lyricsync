@@ -2,6 +2,7 @@
 This script takes a lyrics file (with sentences splitted in lines)
 and outputs a file with words splitted in lines.
 """
+import string
 import os
 import re
 import sys
@@ -15,10 +16,16 @@ def getfileinfo(p):
 
 def getwords(text):
     replacements = {
-        8217: "'" # weird apostrophe to '
+        8217: "'", # weird apostrophe to '
     }
-    remove = ['-','?','!',',','.']
+    remove = ['-','?','!',',','.', chr(8364), chr(8482), chr(8220)]
+    h = {}
+    keep = string.ascii_letters + 'âêôãáéúà'
+    for c in text:
+        h[ord(c)] = True
     text = ''.join([ replacements[ord(c)] if ord(c) in replacements else c for c in text if c not in remove])
+    # print('after transform')
+    # print(text)
     words = re.findall(r"[\w']+", text)
     return words
 
@@ -33,7 +40,6 @@ def main():
         raise Exception("Missing inpath arg")
     inpath = sys.argv[1]
     fileinfo = getfileinfo(inpath)
-    print(fileinfo)
     outpath = os.path.join(fileinfo['directory'], fileinfo['name']+ '.words.txt')
     create_words_file(inpath, outpath)
 
