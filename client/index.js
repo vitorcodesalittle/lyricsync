@@ -4,8 +4,8 @@ $(document).ready(function() {
       this.$divLyrics = $('.lyrics');
       this.words = (JSON.parse(temp))["fragments"]
       console.log(this.words)
-      console.log(getLyricsTimestampByWord(this.words, lyrics))
-      this.lyrics = [
+      this.lyrics= getLyricsTimestampByWord(this.words, lyrics)
+      this.lyrics_original = [
           { "end": "19", "start": "0", "text": "There is a house in New Orleans" },
           { "end": "24", "start": "19", "text": "They call the Rising Sun" },
           { "end": "31", "start": "25", "text": "And it's been the ruin of many a poor boy" },
@@ -47,10 +47,14 @@ $(document).ready(function() {
   
   Karaoke.prototype.addLyricsInDom = function() {
       this.lyrics.map((item, i) => {
-          let elem = document.createElement('li');
-          let elemInner = document.createElement('span');
-          elem.appendChild(elemInner).innerHTML = this.lyrics[i].text;
-          this.$divLyrics.append(elem);
+          let li = document.createElement('li');
+          item.words.forEach((word, wordIndex) => {
+            let elem = document.createElement('span')
+            elem.className = wordIndex
+            elem.innerHTML = word.text
+            li.append(elem)
+          })
+          this.$divLyrics.append(li);
       })
   };
 
@@ -111,7 +115,7 @@ $(document).ready(function() {
       let lineEnd   = lineFragments[lineFragments.length - 1].end
       let wordsTimestamp = lineFragments.map((lineFragment, index) => {
         return {
-          word: wordsInLine[index],
+          text: wordsInLine[index],
           start: lineFragment.start,
           end: lineFragment.end
         }
