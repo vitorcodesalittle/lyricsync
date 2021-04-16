@@ -32,9 +32,11 @@ app.post("/align", upload.single("song"), async (req, res, next) => {
   if (
     !Object.prototype.hasOwnProperty.call(audioExtensions, songFile.mimetype)
   ) {
-    return res
-      .status(400)
-      .json({ message: `Can't convert ${songFile.mimetype} to wav` });
+    return res.status(400).json({
+      message: `Can't convert ${
+        songFile.mimetype
+      } to wav. Current options are ${Object.keys(audioExtensions).join(", ")}`,
+    });
   }
 
   const { path: songPath, originalname } = songFile;
