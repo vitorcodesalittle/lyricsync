@@ -21,6 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static('../client '))
+
 app.post("/align", upload.single("song"), async (req, res, next) => {
   const lyrics = req.body["lyrics"];
   const songFile = req.file;
