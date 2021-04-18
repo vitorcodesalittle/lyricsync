@@ -39,6 +39,11 @@ li span {
   font-size: 2.2em;
 }
 
+.wordSelected {
+  color: red;
+  font-size: 2.5em;
+}
+
 .resetlyricsStyle {
   transition: background-color, color .3s linear;
   background: none;

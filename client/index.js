@@ -50,7 +50,7 @@ $(document).ready(function() {
           let li = document.createElement('li');
           item.words.forEach((word, wordIndex) => {
             let elem = document.createElement('span')
-            elem.className = wordIndex
+            elem.className = "index" + wordIndex
             elem.innerHTML = word.text
             li.append(elem)
           })
@@ -79,22 +79,38 @@ $(document).ready(function() {
 
   Karaoke.prototype.timeupdate = function() {
     var scrollHeight = 120;
-       var previousIndex;
+       var previousIndexLine;
   this.$audioElem.on('timeupdate',function(e){
-          this.lyrics.forEach(function(elem, index, array) {
+          this.lyrics.forEach(function(elem, indexLine, array) {
+              let divLyrics = this.$divLyrics.children()
               if (e.target.currentTime >= elem.start && e.target.currentTime <= elem.end) {
-                      this.$divLyrics.children().eq(index).find('span').addClass('selected');
+                  divLyrics.eq(indexLine).find('span').addClass('selected');
         
-                  if (elem.end >= e.target.currentTime && index != 0) {
+                  if (elem.end >= e.target.currentTime && indexLine != 0) {
 
-                       this.$divLyrics.children().eq(index - 1).find('span').addClass('resetlyricsStyle');
+                      divLyrics.eq(indexLine - 1).find('span').addClass('resetlyricsStyle');
+
                        
-                      if (index >= 3 && index != previousIndex) {
+                      if (indexLine >= 3 && indexLine != previousIndexLine) {
                           $("html,body").animate({ scrollTop: scrollHeight}, 1000);
                           scrollHeight += 120;
                       }
-                      previousIndex = index;
+                      previousIndexLine = indexLine;
                   }
+
+                  elem.words.forEach(function(word, indexWord) {
+                    if (e.target.currentTime >= word.start && e.target.currentTime <= word.end) {
+                      let li = divLyrics.eq(indexLine)
+                      let span = li["0"].querySelector(`.index${indexWord}`)
+                      //li.forEach(el => {
+                      //  console.log(el)
+                      //})
+                      //let span = li.eq(indexWord).find(`span .${indexWord}`)
+                      //find(`span .${indexWord}`)
+                      console.log(span)
+                      span.classList.add('wordSelected');
+                    }
+                  })
               }
           }.bind(this));
 }.bind(this))
