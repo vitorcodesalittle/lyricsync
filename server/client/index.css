@@ -49,3 +49,10 @@ li span {
   background: none;
   color: #8c8c8c;
 }
+
+form {
+  background-color: white;
+  width: 300px;
+  height: fit-content;
+  margin: 0 auto;
+}

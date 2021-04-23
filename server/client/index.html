@@ -8,7 +8,18 @@
   </head> 
   <body>
 
-    <h1>Cara, o que?</h1>
+    <form action="/align" method="POST" enctype="multipart/form-data">
+      <label>Audio file (wav)</label>
+      <input type="file" id="audio_file" name="song" accept="audio/wav">
+      <label>Lyrics (txt)</label>
+      <textarea id="lyrics_input" name="lyrics">
+      
+      </textarea>
+      <button type="submit" value="Submit" name="go">
+        Go
+      </button>
+    </form>
+
     <button id="player">play</button>
     <ul class="lyrics"></ul>
     <audio id="audioElement" preload="auto"> 

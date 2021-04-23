@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+  $('form').on("submit", function(event) {
+    console.log(event)
+  })
+
   var Karaoke = function() {
       this.$audioElem = $('#audioElement');
       this.$divLyrics = $('.lyrics');

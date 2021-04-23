@@ -21,6 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static("./client"))
+
 app.post("/align", upload.single("song"), async (req, res, next) => {
   const lyrics = req.body["lyrics"];
   const songFile = req.file;
@@ -48,7 +50,7 @@ app.post("/align", upload.single("song"), async (req, res, next) => {
   // rodar o align.py
   try {
     const result = await new Promise((resolve, reject) => {
-      const cmd = `python ../align.py ${songPath} ${lyricsPath}`;
+      const cmd = `python ./lib/audio-tools/align.py ${songPath} ${lyricsPath}`;
       exec(cmd, (err, stdout) => {
         if (err) {
           return reject(err);
