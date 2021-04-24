@@ -4,6 +4,7 @@ This script is a shortcut for using spleeter and aeneas on some .wav and .txt
 import os
 from subprocess import Popen, PIPE
 import argparse
+import breaksentences
 
 def parseargs():
     parser = argparse.ArgumentParser(description='Sync lyrics with music')
@@ -39,6 +40,12 @@ def aeneas_align(audio_inputpath, lyrics_inputpath, outpath, language, format):
         output = proc.stdout.read()
         print(output)
 
+def break_sentence(inpath):
+    fileinfo = getfileinfo(inpath)
+    outpath = os.path.join(fileinfo['directory'], fileinfo['name']+ '.words.txt')
+    create_words_file(inpath, outpath)
+    return outpath
+
 args = parseargs()
 audiopath = args['audiopath']
 lyricspath = args['lyricspath']
@@ -53,9 +60,11 @@ splits_dir = audio_filename.split('.')[0] # spleeter outputs vocals.wav into <ou
 
 spleeter_separate(inpath=audiopath, outpath=spleeteroutpath, prefix=cmdprefix)
 
+wordsoutpath = break_sentence(inpath=lyricspath)
+
 aeneas_align(
     audio_inputpath=os.path.join(spleeteroutpath, splits_dir, 'vocals.wav'),
-    lyrics_inputpath=lyricspath,
+    lyrics_inputpath=wordsoutpath,
     outpath=os.path.join( aeneasoutpath, "{0:}_align.{1:}".format(audioname, outformat)),
     language=language,
     format=outformat
