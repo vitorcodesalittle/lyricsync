@@ -1,34 +1,44 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <script src="jquery.js"></script>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="index.css">
-  </head> 
+    <link rel="stylesheet" href="index.css" />
+  </head>
   <body>
-
-    <form action="/align" method="POST" enctype="multipart/form-data">
-      <label>Audio file (wav)</label>
-      <input type="file" id="audio_file" name="song" accept="audio/wav">
-      <label>Lyrics (txt)</label>
-      <textarea id="lyrics_input" name="lyrics">
-      
-      </textarea>
-      <button type="submit" value="Submit" name="go">
-        Go
-      </button>
-    </form>
+    <script src="index.js"></script>
+    <label>Audio file (wav)</label>
+    <input type="file" id="audio_file" name="song" accept="audio/wav" />
+    <input name="lang" placeholder="eng/por" id="lang_input" />
+    <label>Lyrics (txt)</label>
+    <textarea id="lyrics_input" name="lyrics"> </textarea>
+    <button id="submit" name="go" onclick="submitForm()">Go</button>
 
     <button id="player">play</button>
     <ul class="lyrics"></ul>
-    <audio id="audioElement" preload="auto"> 
-      <source src="the_18th_letter.wav" type="audio/wav">
+    <audio id="audioElement" preload="auto">
+      <source src="the_18th_letter.wav" type="audio/wav" />
       <p>Whoops, your browser does not support the audio element.</p>
     </audio>
     <svg class="progress" height="120" viewBox="0 0 120 120">
-      <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
-    <circle stroke-dasharray=" 339.292" stroke-dashoffset="" class="progressValue" cx="60" cy="60" r="54" fill="none" stroke="#f77a52" stroke-width="12" />
-  </svg>
+      <circle
+        cx="60"
+        cy="60"
+        r="54"
+        fill="none"
+        stroke="#e6e6e6"
+        stroke-width="12"
+      />
+      <circle
+        stroke-dasharray=" 339.292"
+        stroke-dashoffset=""
+        class="progressValue"
+        cx="60"
+        cy="60"
+        r="54"
+        fill="none"
+        stroke="#f77a52"
+        stroke-width="12"
+      />
+    </svg>
   </body>
 </html>

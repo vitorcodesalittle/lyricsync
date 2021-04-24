@@ -25,6 +25,7 @@ app.use(express.static("./client"));
 
 app.post("/align", upload.single("song"), async (req, res, next) => {
   const lyrics = req.body["lyrics"];
+  const lang = req.body["lang"];
   const songFile = req.file;
 
   if (!songFile || !lyrics) {
@@ -49,7 +50,9 @@ app.post("/align", upload.single("song"), async (req, res, next) => {
   // rodar o align.py
   try {
     const result = await new Promise((resolve, reject) => {
-      const cmd = `python ./lib/audio-tools/align.py ${songPath} ${lyricsPath}`;
+      const cmd = `python ./lib/audio-tools/align.py ${songPath} ${lyricsPath} --lang ${
+        lang || "eng"
+      }`;
       exec(cmd, (err, stdout) => {
         if (err) {
           return reject(err);
@@ -57,6 +60,7 @@ app.post("/align", upload.single("song"), async (req, res, next) => {
         return resolve(stdout);
       });
     });
+    console.log(result);
     const resultPathRegex = /\.\/results.*\.json/;
     const [resultPath] = result.match(resultPathRegex);
     const buf = fs.readFileSync(resultPath);

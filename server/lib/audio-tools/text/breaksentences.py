@@ -21,11 +21,8 @@ def getwords(text):
     }
     remove = ['-','?','!',',','.', chr(8364), chr(8482), chr(8220),'1','2','3','4','5','6','7','8','9','0']
     text = ''.join([ replacements[ord(c)] if ord(c) in replacements else c for c in text if c not in remove])
-    # print('after transform')
-    # print(text)
     words = re.findall(r"[\w']+", text)
     return words
-
 
 def create_words_file(inpath, outpath):
    with open(inpath, 'r', encoding='utf-8') as f, open(outpath, 'w+', encoding="utf-8") as o:

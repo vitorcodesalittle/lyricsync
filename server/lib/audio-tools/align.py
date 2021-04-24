@@ -4,8 +4,7 @@ This script is a shortcut for using spleeter and aeneas on some .wav and .txt
 import os
 from subprocess import Popen, PIPE
 import argparse
-import breaksentences
-
+from text import breaksentences
 def parseargs():
     parser = argparse.ArgumentParser(description='Sync lyrics with music')
     parser.add_argument('audiopath', metavar='audiopath', type=str, help="path to the music file in .wav")
@@ -18,12 +17,13 @@ def parseargs():
 
 def spleeter_separate(inpath, outpath, prefix=None):
     args = {
+        '-i': inpath,
         '-o': outpath
     }
     cmdargs = ['spleeter', 'separate']
     if prefix != None:
         cmdargs = [prefix] + cmdargs
-    cmdargs = cmdargs + [inpath]
+    cmdargs = cmdargs
     for key, value in args.items():
         cmdargs.append(key)
         cmdargs.append(value)
@@ -41,9 +41,9 @@ def aeneas_align(audio_inputpath, lyrics_inputpath, outpath, language, format):
         print(output)
 
 def break_sentence(inpath):
-    fileinfo = getfileinfo(inpath)
+    fileinfo = breaksentences.getfileinfo(inpath)
     outpath = os.path.join(fileinfo['directory'], fileinfo['name']+ '.words.txt')
-    create_words_file(inpath, outpath)
+    breaksentences.create_words_file(inpath, outpath)
     return outpath
 
 args = parseargs()
