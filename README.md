@@ -17,9 +17,17 @@ Integrantes:
 # Checkpoints
 
 - [x] Sentences alignment
+- [x] Words alignments
 - [ ] Evaluation script
 - [ ] Plotting script
-- [ ] Words alignment
+- [ ] Erro quando tem \n no final das lyrics ( ou em outros lugares? ) Deixar mais robusto
+- [ ] Highlight de algumas palavras não funciona
+- [ ] Crawler para pegar letras automáticamente dependendo do nome da música / nome do arquivo
+- [ ] Pegar áudio da internet
+- [ ] ~~Syllable alignment~~
+
+Words alignment
+
 - [ ] ~~Syllable alignment~~
 
 # Utility
