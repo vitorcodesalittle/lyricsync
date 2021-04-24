@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static("./client"))
+app.use(express.static("./client"));
 
 app.post("/align", upload.single("song"), async (req, res, next) => {
   const lyrics = req.body["lyrics"];
@@ -46,7 +46,6 @@ app.post("/align", upload.single("song"), async (req, res, next) => {
   const lyricsPath = `./uploads/${originalname}_lyrics.txt`;
 
   fs.writeFileSync(lyricsPath, lyrics);
-
   // rodar o align.py
   try {
     const result = await new Promise((resolve, reject) => {
@@ -60,7 +59,7 @@ app.post("/align", upload.single("song"), async (req, res, next) => {
     });
     const resultPathRegex = /\.\/results.*\.json/;
     const [resultPath] = result.match(resultPathRegex);
-    const buf = fs.readFileSync("." + resultPath);
+    const buf = fs.readFileSync(resultPath);
     const json = buf.toString("utf-8");
     return res.status(200).send(json);
   } catch (err) {

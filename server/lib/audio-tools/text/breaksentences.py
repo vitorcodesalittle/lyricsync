@@ -26,10 +26,6 @@ def getwords(text):
     words = re.findall(r"[\w']+", text)
     return words
 
-def getwords2(text):
-    text = ''.join([c for c in list(text) if c not in string.punctuation])
-    words = re.findall(r"[\w']+", text)
-    return words
 
 def create_words_file(inpath, outpath):
    with open(inpath, 'r', encoding='utf-8') as f, open(outpath, 'w+', encoding="utf-8") as o:

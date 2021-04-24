@@ -33,7 +33,7 @@ def spleeter_separate(inpath, outpath, prefix=None):
 
 def aeneas_align(audio_inputpath, lyrics_inputpath, outpath, language, format):
     optionsstring="task_language=" + language + "|os_task_file_format=" + format +  "|is_text_type=plain"
-    cmdargs = ['python', '-m', 'aeneas.tools.execute_task', audio_inputpath, lyrics_inputpath, '"' + optionsstring + '"', outpath, '--skip-validator']
+    cmdargs = ['python', '-m', 'aeneas.tools.execute_task', audio_inputpath, lyrics_inputpath, '"' + optionsstring + '"', outpath, '--skip-validator', '--presets-word']
     print(">>", " ".join(cmdargs))
     with Popen(cmdargs, stdout=PIPE, shell=True) as proc:
         output = proc.stdout.read()
