@@ -5,7 +5,6 @@ Integrantes:
 - Gabriel Pessoa
 - Luan
 - Pedro
-- Penélope
 - Vitor
 
 # Setup
