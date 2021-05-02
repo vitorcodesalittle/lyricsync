@@ -7,26 +7,38 @@
   <body>
     <script src="index.js"></script>
     <div class="container">
-      <h1 style="color: white;">Cara, o que?</h1>
-      <div style="display: flex; margin-left: 0; margin-right: auto;">
-        <p class="label_text">Paste the youtube link for your chosen song, your preferred language for the lyrics and the lyrics itself, line by line. "Cara o que?" will show you how to sing along.</p>
+      <h1 style="color: white">Cara, o que?</h1>
+      <div style="display: flex; margin-left: 0; margin-right: auto">
+        <p class="label_text">
+          Paste the youtube link for your chosen song, your preferred language
+          for the lyrics and the lyrics itself, line by line. "Cara o que?" will
+          show you how to sing along.
+        </p>
       </div>
-      <div style="padding-bottom: 25px;">
-        <div style="display: flex; margin-left: 0; margin-right: auto;">
-          <input name="lang" placeholder="https://youtu.be/XqZsoesa55w" id="youtube_url_input" />
+      <div style="padding-bottom: 25px">
+        <div style="display: flex; margin-left: 0; margin-right: auto">
+          <input
+            name="lang"
+            placeholder="https://youtu.be/XqZsoesa55w"
+            id="youtube_url_input"
+          />
           <label class="label_title">Youtube link</label>
         </div>
-        <div style="display: flex; margin-left: 0; margin-right: auto;">
+        <div style="display: flex; margin-left: 0; margin-right: auto">
           <input name="lang" placeholder="eng/por" id="lang_input" />
           <label class="label_title">Preferred language</label>
         </div>
       </div>
-      <textarea id="lyrics_input" name="lyrics" placeholder="Insert the lyrics for your music, line by line"></textarea>
+      <textarea
+        id="lyrics_input"
+        name="lyrics"
+        placeholder="Insert the lyrics for your music, line by line"
+      ></textarea>
       <button id="submit" name="go" onclick="submitForm()">Sing!</button>
     </div>
     <ul class="lyrics"></ul>
     <audio id="audioElement" preload="auto">
-      <source src="the_18th_letter.wav" type="audio/wav" />
+      <source type="audio/wav" />
       <p>Whoops, your browser does not support the audio element.</p>
     </audio>
     <svg class="progress" height="120" viewBox="0 0 120 120">

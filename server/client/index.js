@@ -47,6 +47,7 @@ Karaoke.prototype.svgLoader = function () {
         clearInterval(gauge);
         $("svg").fadeOut("slow");
         let audio = $("#audioElement")[0];
+        console.log(audio);
         audio.play();
       }
     }.bind(this),
@@ -103,8 +104,8 @@ function getLyricsTimestampByWord(fragments, lyrics) {
   let lyrics_arr = lyrics.split("\n"); // Transform lyrics str to arr
   let result = [];
   lyrics_arr.forEach((line) => {
-    if ($.trim(line).length  == 0) {
-      return
+    if ($.trim(line).length == 0) {
+      return;
     }
     let wordsInLine = line.split(" ").filter((w) => !!w);
     let lineFragments = fragments.splice(0, wordsInLine.length);
@@ -130,7 +131,7 @@ function submitForm(event) {
   var youtube_url = $("#youtube_url_input").val();
   var lang = $("#lang_input").val();
   var lyrics = $("#lyrics_input").val();
-  if (!lyrics || !file) {
+  if (!lyrics || !youtube_url.trim()) {
     alert("You must submit audio file and lyrics cant be empty");
     return;
   }
@@ -144,8 +145,16 @@ function submitForm(event) {
     body: form,
   })
     .then((res) => res.json())
+    .then((res) => {
+      const { align, audioUrl } = res;
+      document.querySelector("source").src = audioUrl;
+      document.querySelector("audio").load();
+      return align;
+    })
     .then((data) => data.fragments.map((th) => ({ ...th, start: th.begin })))
     .then((fragments) => {
+      $(".container").css({ display: "none" });
+      $(".progress").css({ display: "flex" });
       new Karaoke(lyrics, fragments);
     })
     .catch(console.error);
