@@ -103,6 +103,9 @@ function getLyricsTimestampByWord(fragments, lyrics) {
   let lyrics_arr = lyrics.split("\n"); // Transform lyrics str to arr
   let result = [];
   lyrics_arr.forEach((line) => {
+    if ($.trim(line).length  == 0) {
+      return
+    }
     let wordsInLine = line.split(" ").filter((w) => !!w);
     let lineFragments = fragments.splice(0, wordsInLine.length);
     let lineBegin = lineFragments[0].start;
@@ -124,7 +127,7 @@ function getLyricsTimestampByWord(fragments, lyrics) {
 }
 function submitForm(event) {
   // @type {[File]}
-  var [file] = document.getElementById("audio_file").files;
+  var youtube_url = $("#youtube_url_input").val();
   var lang = $("#lang_input").val();
   var lyrics = $("#lyrics_input").val();
   if (!lyrics || !file) {
@@ -133,7 +136,7 @@ function submitForm(event) {
   }
   const form = new FormData();
   form.append("lyrics", lyrics);
-  form.append("song", file, file.filename);
+  form.append("song", youtube_url);
   form.append("lang", lang);
 
   fetch("/align", {

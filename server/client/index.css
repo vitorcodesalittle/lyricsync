@@ -1,5 +1,5 @@
 body {
-  background: #353535;
+  background: #3a0751;
   font-family: sans-serif, arial;
   background-size: cover;
   text-align: center;
@@ -55,4 +55,38 @@ form {
   width: 300px;
   height: fit-content;
   margin: 0 auto;
+}
+
+.label_title {
+  color: white;
+  font-size: 20px;
+  font-weight: 200;
+  margin-left: 10px;
+}
+
+#lyrics_input {
+  height: 200px;
+  width: 500px;
+}
+
+.progress {
+  display: none;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 500px;
+  width: 500px;
+}
+
+#submit {
+  margin-top: 15px;
 }

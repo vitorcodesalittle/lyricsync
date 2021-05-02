@@ -6,14 +6,21 @@
   </head>
   <body>
     <script src="index.js"></script>
-    <label>Audio file (wav)</label>
-    <input type="file" id="audio_file" name="song" accept="audio/wav" />
-    <input name="lang" placeholder="eng/por" id="lang_input" />
-    <label>Lyrics (txt)</label>
-    <textarea id="lyrics_input" name="lyrics"> </textarea>
-    <button id="submit" name="go" onclick="submitForm()">Go</button>
-
-    <button id="player">play</button>
+    <div class="container">
+      <h1 style="color: white;">Cara, o que?</h1>
+      <div style="padding-bottom: 25px;">
+        <div style="display: flex; margin-left: 0; margin-right: auto;">
+          <input name="lang" placeholder="https://youtu.be/XqZsoesa55w" id="youtube_url_input" />
+          <label class="label_title">Youtube link</label>
+        </div>
+        <div style="display: flex; margin-left: 0; margin-right: auto;">
+          <input name="lang" placeholder="eng/por" id="lang_input" />
+          <label class="label_title">Language</label>
+        </div>
+      </div>
+      <textarea id="lyrics_input" name="lyrics" placeholder="Lyrics (line by line)"></textarea>
+      <button id="submit" name="go" onclick="submitForm()">Go</button>
+    </div>
     <ul class="lyrics"></ul>
     <audio id="audioElement" preload="auto">
       <source src="the_18th_letter.wav" type="audio/wav" />
